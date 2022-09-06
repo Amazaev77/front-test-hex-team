@@ -1,0 +1,30 @@
+.header {
+  max-width: 1232px;
+  margin: auto;
+  height: 102px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  justify-content: space-between;
+  .left {
+    display: flex;
+    align-items: center;
+    .github {
+      margin-left: 30px;
+      a {
+        color: hsl(200, 35%, 25%);
+        font-size: 22px;
+      }
+    }
+  }
+  .right {
+    .logout {
+      > a {
+        color: rgb(14, 127, 218);
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

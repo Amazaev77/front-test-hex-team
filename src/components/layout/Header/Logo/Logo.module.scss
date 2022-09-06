@@ -1,0 +1,20 @@
+.logo {
+  display: flex;
+  align-items: center;
+  &_image {
+    width: 100px;
+    height: 40px;
+    background: rgb(66, 165, 245);
+    background: linear-gradient(
+      0deg,
+      rgba(66, 165, 245, 1) 0%,
+      rgba(41, 121, 255, 1) 100%
+    );
+    line-height: 40px;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 2px;
+  }
+}

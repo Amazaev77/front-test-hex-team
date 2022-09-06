@@ -1,0 +1,29 @@
+.form {
+  max-width: 432px;
+  margin: auto;
+  &_error {
+    transform: translateY(5px);
+    position: relative;
+    text-align: center;
+    width: 100%;
+    span {
+      color: #fd1f1f;
+      position: absolute;
+      left: 0;
+      right: 0;
+      font-size: 13px;
+    }
+  }
+  &_to_register,
+  &_to_login {
+    margin-top: 20px;
+    text-align: center;
+    > a {
+      color: rgb(41, 121, 255);
+      font-size: 14px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

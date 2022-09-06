@@ -1,0 +1,17 @@
+@import 'react-redux-toastr/src/styles/index';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: hsl(206, 12%, 95%);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}

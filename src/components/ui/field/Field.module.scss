@@ -1,0 +1,17 @@
+.field {
+  margin-bottom: 32px;
+  &_error {
+    position: relative;
+    margin-bottom: 4px;
+    span {
+      position: absolute;
+      font-size: 14px;
+      color: #fd1f1f;
+    }
+  }
+  &_label {
+    color: rgb(41, 71, 86);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+}

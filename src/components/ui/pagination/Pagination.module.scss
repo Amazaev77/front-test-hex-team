@@ -1,0 +1,58 @@
+.box {
+  display: flex;
+  .pages {
+    display: flex;
+    align-items: center;
+    width: 104px;
+    &_prevPage,
+    &_currentPage,
+    &_nextPage {
+      background-color: #fff;
+      padding: 6px;
+      border-radius: 5px;
+    }
+    &_currentPage {
+      margin: 0 12px;
+      font-size: 15px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+    &_nextPage,
+    &_prevPage {
+      font-size: 12px;
+      width: 25px;
+      height: 25px;
+      opacity: 0.5;
+      text-align: center;
+    }
+  }
+  .buttons {
+    position: relative;
+    width: 60px;
+    margin-left: 20px;
+    &.disabled {
+      opacity: 0.8;
+      button {
+        cursor: initial;
+      }
+    }
+    &_prev,
+    &_next {
+      border: none;
+      box-shadow: rgba(38, 38, 38, 0.3) 0 10px 35px;
+      cursor: pointer;
+      width: 25px;
+      height: 25px;
+      border-radius: 4px;
+    }
+    &_prev {
+      position: absolute;
+      left: 0;
+    }
+    &_next {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
