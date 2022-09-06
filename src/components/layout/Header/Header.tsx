@@ -18,7 +18,7 @@ const Header: FC = () => {
       <div className={styles.left}>
         <Logo />
         <div className={styles.github}>
-          <a href='https://github.com/'>GitHub</a>
+          <a href='https://github.com/Amazaev77/front-test-hex-team'>GitHub</a>
         </div>
       </div>
       <div className={styles.right}>
