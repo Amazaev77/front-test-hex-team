@@ -1,4 +1,5 @@
 import { API_URL } from 'src/api/api_url'
+import { itemsCount } from 'src/constants/itemsCount'
 
 type ParamType = 'login' | 'register' | 'squeeze' | 'statistics' | 's'
 
@@ -20,5 +21,5 @@ export const getUserParams = (username: string, password: string) => {
 }
 
 export const getStatisticsParams = (order = 'desc_counter', page = 1) => {
-  return `?order=${order}&offset=${page * 5 - 5}&limit=${5}`
+  return `?order=${order}&offset=${page * itemsCount - itemsCount}&limit=${itemsCount}`
 }

@@ -1,19 +1,20 @@
 import cn from 'classnames'
 import React, { FC } from 'react'
+import { itemsCount } from 'src/constants/itemsCount'
 import { useActions } from 'src/hooks/useActions'
+import { usePagination } from 'src/hooks/usePagination'
 import { useTypedSelector } from 'src/hooks/useTypedSelector'
 
 import styles from './Pagination.module.scss'
 
 const Pagination: FC = () => {
   const { toNextPage, toPrevPage } = useActions()
+  const { prevPage, currentPage, nextPage } = usePagination()
 
-  const page = useTypedSelector((state) => state.statistics.page)
   const isLoading = useTypedSelector((state) => state.statistics.isLoading)
 
-  const prevPage = page * 5 - 5
-  const currentPage = page * 5
-  const nextPage = page * 5 + 5
+  const handleNextPage = () => toNextPage()
+  const handlePrevPage = () => toPrevPage()
 
   return (
     <div className={styles.box}>
@@ -27,7 +28,7 @@ const Pagination: FC = () => {
           <button
             disabled={isLoading}
             className={styles.buttons_prev}
-            onClick={() => toPrevPage()}
+            onClick={handlePrevPage}
           >
             {'<'}
           </button>
@@ -37,7 +38,7 @@ const Pagination: FC = () => {
           <button
             disabled={isLoading}
             className={styles.buttons_next}
-            onClick={() => toNextPage()}
+            onClick={handleNextPage}
           >
             {'>'}
           </button>
