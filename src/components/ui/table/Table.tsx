@@ -15,6 +15,7 @@ const Table: FC = () => {
   const token = useTypedSelector((state) => state.user.token?.access_token)
   const page = useTypedSelector((state) => state.statistics.page)
   const data = useTypedSelector((state) => state.statistics.statistics)
+  const isLoading = useTypedSelector((state) => state.statistics.isLoading)
 
   useEffect(() => {
     fetchStatistics({ token: token as string, page })
@@ -26,6 +27,10 @@ const Table: FC = () => {
       data,
     },
   )
+
+  if (isLoading) {
+    return <div className={styles.loading}>Загрузка...</div>
+  }
 
   if (!statistics.length) {
     return <div className={styles.empty}>Список ссылок пуст</div>
