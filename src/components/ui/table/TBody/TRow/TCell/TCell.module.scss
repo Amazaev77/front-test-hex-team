@@ -4,7 +4,7 @@
   border: 1px solid hsl(206, 12%, 95%);
   .long {
     &_link {
-      width: 400px;
+      max-width: 400px;
       > a {
         height: 18px;
         display: block;
@@ -16,7 +16,7 @@
   .short {
     &_link {
       display: flex;
-      width: 400px;
+      max-width: 400px;
       > a {
         height: 18px;
         display: block;

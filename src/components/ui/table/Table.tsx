@@ -6,6 +6,7 @@ import { columns } from 'src/components/ui/table/Table.data'
 import { useActions } from 'src/hooks/useActions'
 import { useTypedSelector } from 'src/hooks/useTypedSelector'
 
+import Skeleton from 'react-loading-skeleton'
 import styles from './Table.module.scss'
 
 const Table: FC = () => {
@@ -28,11 +29,7 @@ const Table: FC = () => {
     },
   )
 
-  if (isLoading) {
-    return <div className={styles.loading}>Загрузка...</div>
-  }
-
-  if (!statistics.length) {
+  if (!statistics.length && !isLoading) {
     return <div className={styles.empty}>Список ссылок пуст</div>
   }
 

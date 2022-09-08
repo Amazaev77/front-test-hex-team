@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { Row } from 'react-table'
+import { useTypedSelector } from 'src/hooks/useTypedSelector'
 
 import styles from './TBody.module.scss'
 import TRow from './TRow/TRow'
@@ -10,10 +12,21 @@ interface ITBody {
   getTableBodyProps: () => any
 }
 
+
+
 const TBody: FC<ITBody> = ({ getTableBodyProps, rows, prepareRow }) => {
+  const isLoading = useTypedSelector(state => state.statistics.isLoading)
+
   return (
     <tbody className={styles.body} {...getTableBodyProps()}>
-      {rows.map((row) => {
+
+    {isLoading ? [1,2,3,4,5].map(num => (
+      <tr className={styles.skeleton} key={num}>
+        <td><Skeleton width='100%' height={35} /></td>
+        <td><Skeleton width='100%' height={35} /></td>
+        <td><Skeleton width='100%' height={35} /></td>
+      </tr>
+    )) : rows.map((row) => {
         prepareRow(row)
         return <TRow key={row.getRowProps().key} row={row} />
       })}

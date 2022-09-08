@@ -2,4 +2,9 @@
   border-top: 2px solid #e8e8e8;
   border-collapse: separate;
   border-spacing: 4px;
+  .skeleton {
+    > td {
+      padding: 8px 0;
+    }
+  }
 }
