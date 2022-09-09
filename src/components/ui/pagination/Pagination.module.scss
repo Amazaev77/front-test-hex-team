@@ -31,20 +31,19 @@
     position: relative;
     width: 60px;
     margin-left: 20px;
-    &.disabled {
-      opacity: 0.8;
-      button {
-        cursor: initial;
-      }
-    }
+
     &_prev,
     &_next {
       border: none;
       box-shadow: rgba(38, 38, 38, 0.3) 0 10px 35px;
-      cursor: pointer;
       width: 25px;
       height: 25px;
       border-radius: 4px;
+      cursor: pointer;
+      &:disabled {
+        opacity: 0.8;
+        cursor: default;
+      }
     }
     &_prev {
       position: absolute;

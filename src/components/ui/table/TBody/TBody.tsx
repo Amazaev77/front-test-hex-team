@@ -12,24 +12,35 @@ interface ITBody {
   getTableBodyProps: () => any
 }
 
-
-
 const TBody: FC<ITBody> = ({ getTableBodyProps, rows, prepareRow }) => {
-  const isLoading = useTypedSelector(state => state.statistics.isLoading)
+  const isLoading = useTypedSelector((state) => state.statistics.isLoading)
+  const data = useTypedSelector((state) => state.statistics.data)
 
   return (
     <tbody className={styles.body} {...getTableBodyProps()}>
-
-    {isLoading ? [1,2,3,4,5].map(num => (
-      <tr className={styles.skeleton} key={num}>
-        <td><Skeleton width='100%' height={35} /></td>
-        <td><Skeleton width='100%' height={35} /></td>
-        <td><Skeleton width='100%' height={35} /></td>
-      </tr>
-    )) : rows.map((row) => {
-        prepareRow(row)
-        return <TRow key={row.getRowProps().key} row={row} />
-      })}
+      {!data.length && !isLoading && (
+        <tr className={styles.empty}>
+          <td>Страница пуста</td>
+        </tr>
+      )}
+      {isLoading
+        ? [1, 2, 3, 4, 5].map((num) => (
+            <tr className={styles.skeleton} key={num}>
+              <td>
+                <Skeleton width='100%' height={35} />
+              </td>
+              <td>
+                <Skeleton width='100%' height={35} />
+              </td>
+              <td>
+                <Skeleton width='100%' height={35} />
+              </td>
+            </tr>
+          ))
+        : rows.map((row) => {
+            prepareRow(row)
+            return <TRow key={row.getRowProps().key} row={row} />
+          })}
     </tbody>
   )
 }

@@ -10,5 +10,5 @@ export const useRedirectToHome = () => {
     if (isAuth) {
       navigate('/')
     }
-  }, [isAuth])
+  }, [isAuth, navigate])
 }

@@ -6,17 +6,14 @@ import { columns } from 'src/components/ui/table/Table.data'
 import { useActions } from 'src/hooks/useActions'
 import { useTypedSelector } from 'src/hooks/useTypedSelector'
 
-import Skeleton from 'react-loading-skeleton'
 import styles from './Table.module.scss'
 
 const Table: FC = () => {
   const { fetchStatistics } = useActions()
 
-  const statistics = useTypedSelector((state) => state.statistics.statistics)
   const token = useTypedSelector((state) => state.user.token?.access_token)
   const page = useTypedSelector((state) => state.statistics.page)
-  const data = useTypedSelector((state) => state.statistics.statistics)
-  const isLoading = useTypedSelector((state) => state.statistics.isLoading)
+  const data = useTypedSelector((state) => state.statistics.data)
 
   useEffect(() => {
     fetchStatistics({ token: token as string, page })
@@ -28,14 +25,10 @@ const Table: FC = () => {
       data,
     },
   )
-
-  if (!statistics.length && !isLoading) {
-    return <div className={styles.empty}>Список ссылок пуст</div>
-  }
-
   return (
     <table className={styles.table} {...getTableProps()}>
       <THead headerGroups={headerGroups} />
+
       <TBody
         getTableBodyProps={getTableBodyProps}
         prepareRow={prepareRow}

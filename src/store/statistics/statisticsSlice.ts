@@ -1,13 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { sendLongLink } from 'src/store/link/linkActions'
 import { fetchStatistics } from 'src/store/statistics/statisticsActions'
+import { logout } from 'src/store/user/userActions'
 
 import { StatisticsState } from './types'
 
 const initialState: StatisticsState = {
   error: null,
   isLoading: false,
-  statistics: [],
+  data: [],
   page: 1,
 }
 
@@ -16,7 +17,7 @@ export const statisticsSlice = createSlice({
   initialState,
   reducers: {
     addCount: (state, action: PayloadAction<number>) => {
-      state.statistics = state.statistics.map((el) => {
+      state.data = state.data.map((el) => {
         return el.id === action.payload ? { ...el, counter: el.counter + 1 } : el
       })
     },
@@ -34,20 +35,30 @@ export const statisticsSlice = createSlice({
         state.isLoading = true
       })
       .addCase(fetchStatistics.fulfilled, (state, action) => {
-        state.statistics = action.payload
+        state.data = action.payload
         state.isLoading = false
         state.error = null
+        // if (action.payload.length === 0) {
+        //   state.page = 1
+        // }
       })
       .addCase(fetchStatistics.rejected, (state, action) => {
         state.error = action.payload as string
-        state.statistics = []
+        state.data = []
         state.isLoading = false
+        state.page = 1
       })
       .addCase(sendLongLink.fulfilled, (state, action) => {
-        if (state.statistics.length === 10) {
-          state.statistics.shift()
+        if (state.data.length === 10) {
+          state.data.shift()
         }
-        state.statistics.unshift(action.payload)
+        state.data.unshift(action.payload)
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.error = null
+        state.isLoading = false
+        state.data = []
+        state.page = 1
       })
   },
 })
